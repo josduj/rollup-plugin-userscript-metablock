@@ -2,7 +2,7 @@
   "name": "rollup-plugin-userscript-metablock",
   "version": "0.1.1",
   "description": "Transform json file to userscript metablock and append on",
-  "main": "dist/rollup-plugin-userscript-metablock.common.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "npm run build && cd test && babel --presets env -o compiled.js test.js && mocha compiled.js",
     "build": "rollup -c"
