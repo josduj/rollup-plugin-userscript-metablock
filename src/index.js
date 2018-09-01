@@ -1,5 +1,5 @@
-import {existsSync, readFileSync} from 'fs';
-import {extname} from 'path';
+const { existsSync, readFileSync } = require('fs');
+const { extname } = require('path');
 
 function isEmptyArray(arr) {
 	return Array.isArray(arr) && arr.length === 0;
@@ -48,7 +48,7 @@ function processMetaValue(value) {
 	}
 }
 
-export default function(options = {}) {
+module.exports = function(options = {}) {
 	const opt = Object.assign({
 		file: null,
 		// script manager : 'tampermonkey' | 'greasemonkey3' | 'greasemonkey4' | 'compatible'(default)
