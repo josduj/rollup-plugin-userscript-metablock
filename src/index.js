@@ -55,6 +55,7 @@ export default function(options = {}) {
 		manager: 'compatible',
 		order: ['name', 'description', 'namespace', '...', 'grant'],
 		version: null,
+		custom: {},
 		skip: [],
 	}, options);
 
@@ -107,6 +108,14 @@ export default function(options = {}) {
 	// if no include rule, greasemonkey assume `@include *` but tampermonkey don't.
 	if (!isValid(meta.include) && !isValid(meta.match) && opt.manager === 'compatible') {
 		meta.include = '*';
+	}
+
+	for (const [customKey, customValue] of Object.entries(opt.custom)) {
+		if (typeof customValue === 'function') {
+			meta[customKey] = customValue.bind(meta)(meta[customKey])
+		} else {
+			meta[customKey] = customValue
+		}
 	}
 
 	// process key-value form name / description

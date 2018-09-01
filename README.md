@@ -37,7 +37,18 @@ export default {
 	// skip: string[]
 	// default: []
 	// ignore unwanted metakeys
-	skip: ['devDependencies', 'scripts']
+	skip: ['devDependencies', 'scripts'],
+
+	// custom: { [string]: string|function }
+	// default: {}
+	// specify custom metakeys or compute them from existing ones
+	custom: {
+		myMetaKey: 'myValue',
+		name: value => value + 'Test',
+		updateURL: function() {
+			return this.namespace + '/raw/master/' + this.main
+		}
+	},
 
     // version override: string | null(default)
     // override file `version` metakey
