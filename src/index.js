@@ -54,7 +54,8 @@ export default function(options = {}) {
 		// script manager : 'tampermonkey' | 'greasemonkey3' | 'greasemonkey4' | 'compatible'(default)
 		manager: 'compatible',
 		order: ['name', 'description', 'namespace', '...', 'grant'],
-		version: null
+		version: null,
+		skip: [],
 	}, options);
 
 	const meta = {
@@ -134,7 +135,10 @@ export default function(options = {}) {
 	};
 
 	// reorder metakeys
-	const metaKeySet = new Set(Object.keys(meta));
+	const metaKeySet = new Set(Object.keys(meta).filter(key => {
+		return !opt.skip.includes(key)
+	}));
+
 	const [pre, post] = [[], []];
 	let isToPre = true;
 	for (const oKey of opt.order) {

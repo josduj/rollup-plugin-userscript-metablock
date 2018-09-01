@@ -32,7 +32,12 @@ export default {
     // order: string[]
     // default: ['name', 'description', 'namespace', '...', 'grant']
     // ignore unknown metakey or multiple '...'
-    order: ['name', 'description', 'namespace', '...', 'grant'],
+	order: ['name', 'description', 'namespace', '...', 'grant'],
+
+	// skip: string[]
+	// default: []
+	// ignore unwanted metakeys
+	skip: ['devDependencies', 'scripts']
 
     // version override: string | null(default)
     // override file `version` metakey
